@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { @apply bg-creme text-encre font-texte antialiased; }
+h1, h2, h3 { @apply font-titre; }
+:focus-visible { outline: 3px solid #D9B36A; outline-offset: 2px; }
+
+@layer components {
+  .conteneur { @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8; }
+  .btn-vert  { @apply inline-flex items-center justify-center gap-2 rounded-md bg-foret px-5 py-3 font-semibold text-white transition-colors hover:bg-foret-sombre disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn-or    { @apply inline-flex items-center justify-center gap-2 rounded-md bg-or px-5 py-3 font-semibold text-white transition-colors hover:bg-or-sombre; }
+  .champ     { @apply w-full rounded-md border border-stone-300 bg-white px-3 py-2.5 text-[15px] text-encre placeholder:text-stone-400 focus:border-foret focus:outline-none focus:ring-2 focus:ring-foret/25; }
+  .champ-erreur { @apply border-promo focus:border-promo focus:ring-promo/25; }
+  .pas-btn   { @apply grid h-10 w-10 place-items-center bg-stone-100 text-encre transition-colors hover:bg-stone-200 disabled:cursor-not-allowed disabled:opacity-35; }
+}
+
+/* Apparition légère au défilement */
+.apparait { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.apparait.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .apparait { opacity: 1; transform: none; transition: none; }
+}
+
+/* Fondu de la photo du bandeau vers le fond sombre (ordinateur) */
+@media (min-width: 1024px) {
+  .fondu-gauche { -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%); mask-image: linear-gradient(to right, transparent 0%, #000 38%); }
+}
